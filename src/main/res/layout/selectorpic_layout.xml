@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    >
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="拍照"
+        android:textSize="22sp"
+        android:textColor="@color/colortext"
+        android:id="@+id/take_pic"
+        android:background="@drawable/selector_general"
+        />
+    <include layout="@layout/line"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="从相册中选取"
+        android:textSize="22sp"
+        android:textColor="@color/colortext"
+        android:id="@+id/choose_pic"
+        android:background="@drawable/selector_general"
+        />
+    <include layout="@layout/line"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="取消"
+        android:textSize="22sp"
+        android:textColor="@color/colorred"
+        android:id="@+id/cencle_selector"
+        android:background="@drawable/selector_general"
+        />
+
+</LinearLayout>

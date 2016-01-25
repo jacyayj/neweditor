@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        >
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/my_article"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:background="@drawable/mytext_lable_bg"
+            />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="我的发布：111篇"
+            android:textSize="16sp"
+            android:textColor="@color/tagscolor"
+            />
+    </RelativeLayout>
+    <include layout="@layout/line"/>
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/article_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#aaa"
+        android:dividerHeight="0.5dp"
+        >
+    </android.support.v7.widget.ListViewCompat>
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include layout="@layout/line"/>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@color/colorwhite"
+        android:gravity="center_vertical"
+        >
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/img_user"
+            android:layout_marginRight="10dp"
+            />
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:textColor="#333"
+            android:textSize="16sp"
+            android:hint="@string/input_user"
+            android:textColorHint="#666"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:id="@+id/login_phone" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <include layout="@layout/line"/>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@color/colorwhite"
+        android:gravity="center_vertical"
+        >
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/img_pwd"
+            android:layout_marginRight="10dp"
+            />
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:textColor="#333"
+            android:textSize="16sp"
+            android:textColorHint="#666"
+            android:hint="@string/input_pwd"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:id="@+id/login_pwd" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <include layout="@layout/line"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_btn"
+        android:text="@string/login"
+        android:textSize="@dimen/size_title"
+        android:textColor="@color/colorwhite"
+        android:id="@+id/login" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即注册"
+            android:textColor="@color/tagscolor"
+            android:textSize="14sp"
+            android:id="@+id/to_register" />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记密码？"
+            android:textColor="@color/tagscolor"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/to_findpwd" />
+    </RelativeLayout>
+
+</LinearLayout>

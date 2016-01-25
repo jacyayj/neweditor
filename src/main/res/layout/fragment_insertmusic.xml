@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    >
+
+    <ListView
+        android:id="@+id/insertmusic_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/background"
+        android:dividerHeight="10dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@drawable/bg_music_stop"
+        android:minHeight="50dp"
+        >
+    </ListView>
+
+</LinearLayout>

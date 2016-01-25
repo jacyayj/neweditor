@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/gg1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="广告1"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:background="@drawable/test"
+        />
+    <TextView
+        android:id="@+id/gg2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="广告2"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:background="@drawable/test"
+        />
+    <TextView
+        android:id="@+id/gg3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="广告3"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:background="@drawable/test"
+        />
+</LinearLayout>

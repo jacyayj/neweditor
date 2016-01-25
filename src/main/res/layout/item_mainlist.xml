@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/colorwhite"
+    android:padding="5dp"
+    >
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:id="@+id/main_list_icon"
+        android:background="@drawable/test_main_lable"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:text="xxxxxxxxxx"
+            android:textColor="#333"
+            android:textSize="@dimen/lable"
+            android:id="@+id/main_list_lable" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.8"
+            android:textColor="#666"
+            android:textSize="@dimen/content"
+            android:text="yyyyyyyyy"
+            android:id="@+id/main_list_content"
+            android:textIsSelectable="false" />
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/tag"
+                android:textColor="#666"
+                android:text="阅读："
+                android:id="@+id/main_list_pviews" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/tag"
+                android:textColor="#666"
+                android:text="11:11"
+                android:id="@+id/main_list_time" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="@dimen/tag"
+                android:textColor="#666"
+                android:text="来源："
+                android:id="@+id/main_list_rootin" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </LinearLayout>
+</LinearLayout>

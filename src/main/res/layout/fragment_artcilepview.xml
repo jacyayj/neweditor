@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/article_pview_title"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/color_titlebackground"
+        >
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/artcile_pview_back"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:src="@drawable/img_back"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            />
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/article_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="文章预览"
+            android:textSize="@dimen/size_title"
+            android:textColor="@color/colorwhite"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="我的文章"
+        android:id="@+id/artcile_pview"
+        android:layout_below="@id/article_pview_title"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_remind"
+        android:padding="5dp"
+        android:id="@+id/article_remind_top"
+        android:layout_below="@id/article_pview_title"
+        >
+        
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_remind"
+            android:layout_alignParentLeft="true"
+            />
+        <ImageView
+            android:id="@+id/artcile_remind_close_top"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/remind_close"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_remind"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/article_remind_bottom">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_remind"
+            android:layout_alignParentLeft="true"
+            />
+        <ImageView
+            android:id="@+id/artcile_remind_close_bottom"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/remind_close"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name_en">neweditor</string>
+    <string name="app_name_ch">孺子牛</string>
+    <string name="article_link">粘贴文章链接</string>
+    <string name="app_name">XBO</string>
+    <string name="TAGS">热门标签:</string>
+    <string name="HOT">热门</string>
+    <string name="COMMEND">推荐</string>
+    <string name="JOKE">段子手</string>
+    <string name="RETRO">复古家饰</string>
+    <string name="CAMERA">相机控</string>
+    <string name="edit_artcial">写一篇</string>
+    <string name="new_ad">新建广告</string>
+    <string name="myartcial">我的文章</string>
+    <string name="adcenter">广告中心</string>
+    <string name="index">首页</string>
+    <string name="edit_data">编辑资料</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="input_pwd">请输入密码</string>
+    <string name="input_user">请输入您的手机号码</string>
+    <string name="input_pwd_again">请再次输入密码</string>
+    <string name="register">立即注册</string>
+    <string name="reg_agreement">注册成为会员即代表同意《用户服务协议》</string>
+    <string name="get_code">获取验证码</string>
+    <string name="input_authcode">请输入短信验证码</string>
+    <string name="login">登录</string>
+    <string name="send_again">重新发送</string>
+    <string name="affirm">确认修改</string>
+</resources>

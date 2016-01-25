@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include layout="@layout/line"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorwhite"
+        android:hint="@string/input_user"
+        android:textColor="#333"
+        android:textSize="16sp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:textColorHint="#666"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:id="@+id/register_phone" />
+
+    <include layout="@layout/line"/>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/colorwhite"
+        >
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:background="@null"
+            android:textColor="#333"
+            android:textSize="16sp"
+            android:textColorHint="#666"
+            android:hint="@string/input_authcode"
+            android:inputType="number"
+            android:maxLength="4"
+            android:id="@+id/register_code" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn2"
+            android:textColor="@color/colorwhite"
+            android:textSize="14sp"
+            android:text="@string/get_code"
+            android:id="@+id/btn_getcode" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical"
+        android:background="@color/colorwhite"
+        >
+
+        <include layout="@layout/line"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@null"
+            android:textColor="#333"
+            android:textSize="16sp"
+            android:textColorHint="#666"
+            android:hint="@string/input_pwd"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:id="@+id/register_pwd" />
+
+        <include layout="@layout/line"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorwhite"
+        android:textSize="16sp"
+        android:textColorHint="#666"
+        android:hint="@string/input_pwd_again"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:maxLength="16"
+        android:inputType="textPassword"
+        android:id="@+id/register_pwd_affirm" />
+
+    <include layout="@layout/line"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_btn"
+        android:text="@string/register"
+        android:textSize="@dimen/size_title"
+        android:textColor="@color/colorwhite"
+        android:id="@+id/register" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/reg_agreement"
+        android:layout_gravity="center_horizontal"
+        android:textSize="14sp"
+        android:id="@+id/reg_agreement" />
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="lable">14sp</dimen>
+    <dimen name="content">11sp</dimen>
+    <dimen name="tag">9sp</dimen>
+
+</resources>
