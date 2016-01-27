@@ -4,19 +4,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 import com.weiyin.mobile.neweditor.Utils.StringUtils;
 
 import org.xutils.view.annotation.Event;
@@ -107,9 +103,9 @@ public class FragmentFindPwd extends Fragment{
         phone = phone_edittext.getText().toString();
 
         if (StringUtils.isPhone(phone)){
-            ActivityController.getInstance().toast(getActivity(),"验证码已发送");
+            ActivityUtils.toast(getActivity(),"验证码已发送");
         }else {
-            ActivityController.getInstance().toast(getActivity(),"请输入正确的手机号");
+            ActivityUtils.toast(getActivity(),"请输入正确的手机号");
         }
 
         handler = new Handler(){
@@ -143,28 +139,28 @@ public class FragmentFindPwd extends Fragment{
 
         if (StringUtils.isPhone(phone)){
             if (StringUtils.isNULL(code)){
-                ActivityController.getInstance().toast(getActivity(),"请输入验证码！");
+               ActivityUtils.toast(getActivity(),"请输入验证码！");
             }else {
                 if("1234".equals(code)){
                     if (StringUtils.isNULL(pwd)){
-                        ActivityController.getInstance().toast(getActivity(),"请输入密码！");
+                        ActivityUtils.toast(getActivity(),"请输入密码！");
                     }else {
                         if (StringUtils.isNULL(pwd_affirm)){
-                            ActivityController.getInstance().toast(getActivity(),"请再次输入密码！");
+                            ActivityUtils.toast(getActivity(),"请再次输入密码！");
                         }else {
                             if (pwd.equals(pwd_affirm)){
-                                ActivityController.getInstance().toast(getActivity(),"修改成功！");
+                                ActivityUtils.toast(getActivity(),"修改成功！");
                             }else {
-                                ActivityController.getInstance().toast(getActivity(),"两次输入密码不同、请确认后再试！");
+                                ActivityUtils.toast(getActivity(),"两次输入密码不同、请确认后再试！");
                             }
                         }
                     }
                 }else {
-                    ActivityController.getInstance().toast(getActivity(),"验证码错误");
+                    ActivityUtils.toast(getActivity(),"验证码错误");
                 }
             }
         }else {
-            ActivityController.getInstance().toast(getActivity(),"请输入正确的手机号！");
+            ActivityUtils.toast(getActivity(),"请输入正确的手机号！");
         }
 
     }

@@ -6,20 +6,18 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.umeng.analytics.MobclickAgent;
 import com.weiyin.mobile.neweditor.Adapter.GrideViewAdapter;
 import com.weiyin.mobile.neweditor.Adapter.MainListviewIAdapter;
 import com.weiyin.mobile.neweditor.Adapter.MainViewPagerAdapter;
 import com.weiyin.mobile.neweditor.Bean.AdapterData;
 import com.weiyin.mobile.neweditor.Bean.Static;
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -119,7 +117,7 @@ public class FragmentMain extends Fragment implements ViewPager.OnPageChangeList
                 Map values = new HashMap();
                 values.put("title",datas.get(position).getLable());
                 values.put("content",datas.get(position).getContent());
-                ActivityController.getInstance().start(getActivity(), Static.ACTION_ARTCILE,values);
+                ActivityUtils.start(getActivity(), Static.ACTION_ARTCILE,values);
             }
         });
 

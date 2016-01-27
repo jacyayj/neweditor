@@ -2,17 +2,15 @@ package com.weiyin.mobile.neweditor.View.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.weiyin.mobile.neweditor.Bean.Static;
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 import com.weiyin.mobile.neweditor.Utils.DataUtils;
 import com.weiyin.mobile.neweditor.Utils.StringUtils;
 
@@ -80,16 +78,16 @@ public class FragmentLogin extends Fragment{
         pwd = pwd_edittext.getText().toString();
         if (StringUtils.isPhone(phone)){
             if("".equals(pwd)){
-                ActivityController.getInstance().toast(getActivity(),"请输入密码！");
+                ActivityUtils.toast(getActivity(),"请输入密码！");
             }else {
-                ActivityController.getInstance().toast(getActivity(),"二狗子已登录");
+                ActivityUtils.toast(getActivity(),"二狗子已登录");
                 DataUtils.writeString(getActivity(),"phone",phone);
                 DataUtils.writeString(getActivity(),"pwd",pwd);
                 Static.ISLOGIN = true;
                 getActivity().finish();
             }
         }else{
-            ActivityController.getInstance().toast(getActivity(),"请输入正确的手机号码！");
+            ActivityUtils.toast(getActivity(),"请输入正确的手机号码！");
         }
     }
 

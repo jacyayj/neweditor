@@ -1,21 +1,16 @@
 package com.weiyin.mobile.neweditor.View.Fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 
 import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 /**
@@ -57,8 +52,8 @@ public class FragmentPay extends Fragment{
     private void onClicke(View v){
 
         switch (v.getId()){
-            case R.id.pay_weixin : ActivityController.getInstance().toast(getActivity(),"微信支付");break;
-            case R.id.pay_alippay : ActivityController.getInstance().toast(getActivity(),"支付宝支付");break;
+            case R.id.pay_weixin : ActivityUtils.toast(getActivity(),"微信支付");break;
+            case R.id.pay_alippay : ActivityUtils.toast(getActivity(),"支付宝支付");break;
             default:break;
 
         }

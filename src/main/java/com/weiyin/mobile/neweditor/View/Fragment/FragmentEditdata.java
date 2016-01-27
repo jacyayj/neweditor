@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 import com.weiyin.mobile.neweditor.Utils.ImageUtils;
 import com.weiyin.mobile.neweditor.View.CostomView.SelectorPicPopupWindow;
 
@@ -82,7 +82,8 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
 
         switch (v.getId()){
             case R.id.edit_head : popupWindow.showAtLocation(rootView, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);break;
-            case R.id.pay_alippay : ActivityController.getInstance().toast(getActivity(),"支付宝支付");break;
+            case R.id.pay_alippay :
+                ActivityUtils.toast(getActivity(),"支付宝支付");break;
             default:break;
 
         }
@@ -112,7 +113,7 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(),HEAD_NAME)));
             startActivityForResult(intent,CODE_TAKEPIC);
         }else
-            ActivityController.getInstance().toast(getActivity(),"SD卡不可用");
+            ActivityUtils.toast(getActivity(),"SD卡不可用");
 
     }
 

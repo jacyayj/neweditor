@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weiyin.mobile.neweditor.Bean.Static;
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -76,7 +76,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
     }
     @Override
     public void onPageSelected(int position) {
-        ActivityController.getInstance().toast(this,"引导页"+position+1);
+        ActivityUtils.toast(this,"引导页"+position+1);
         for (int i = 0 ; i< dots.size() ; i++){
             if (i == position)
                 dots.get(i).setImageResource(R.drawable.dot_a);
@@ -85,7 +85,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
 
         }
         if (position == 3){
-            ActivityController.getInstance().start(this, Static.ACTION_MAIN);
+            ActivityUtils.start(this, Static.ACTION_MAIN);
             finish();
         }
     }

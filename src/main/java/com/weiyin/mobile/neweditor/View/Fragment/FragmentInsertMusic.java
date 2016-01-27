@@ -7,28 +7,22 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.weiyin.mobile.neweditor.Adapter.InsertMusicListviewIAdapter;
 import com.weiyin.mobile.neweditor.Bean.Music;
 import com.weiyin.mobile.neweditor.Bean.Static;
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.Controller.FindMusicSrevice;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.Controller.MusicPlayerService;
 import com.weiyin.mobile.neweditor.Controller.MusicPlayerServiceListener;
-import com.weiyin.mobile.neweditor.Controller.MyBroadcastReceiver;
 import com.weiyin.mobile.neweditor.R;
 
 import org.xutils.view.annotation.ViewInject;

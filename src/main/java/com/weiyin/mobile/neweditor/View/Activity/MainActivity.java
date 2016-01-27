@@ -1,6 +1,5 @@
 package com.weiyin.mobile.neweditor.View.Activity;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,13 +15,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.weiyin.mobile.neweditor.Adapter.FragmentPagerSelectorAdapter;
 import com.weiyin.mobile.neweditor.Bean.Static;
-import com.weiyin.mobile.neweditor.Controller.ActivityController;
 import com.weiyin.mobile.neweditor.R;
+import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 import com.weiyin.mobile.neweditor.View.CostomView.MainmenuLayout;
 import com.weiyin.mobile.neweditor.View.Fragment.FragmentAdCenter;
 import com.weiyin.mobile.neweditor.View.Fragment.FragmentMain;
@@ -141,13 +139,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     if (Static.ISLOGIN){
                         drawer.openDrawer(GravityCompat.START);
                     }else {
-                        ActivityController.getInstance().start(this,Static.ACTION_USER,"start",Static.TAG_LOGIN);
+                        ActivityUtils.start(this,Static.ACTION_USER,"start",Static.TAG_LOGIN);
                     }
                     break;
                 case R.id.controller_btn :
                     switch (index){
-                        case 1 : ActivityController.getInstance().toast(this,"写一篇");break;
-                        case 2 : ActivityController.getInstance().toast(this,"广告中心");break;
+                        case 1 : ActivityUtils.toast(this,"写一篇");break;
+                        case 2 : ActivityUtils.toast(this,"广告中心");break;
                         default:break;
                     }
                     break;
@@ -212,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             finish();
         }else {
             isExit = true;
-            ActivityController.getInstance().toast(this,"再按一次退出程序",3000);
+            ActivityUtils.toast(this,"再按一次退出程序",3000);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -230,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         switch (id){
 
-            case R.id.drawer_menu1 : ActivityController.getInstance().start(this, Static.ACTION_USER,"start",Static.TAG_EDITDATA); ; break;
+            case R.id.drawer_menu1 : ActivityUtils.start(this, Static.ACTION_USER,"start",Static.TAG_EDITDATA); break;
             case R.id.drawer_menu2 :  ; break;
             default:break;
 
