@@ -26,6 +26,17 @@ public class Static {
 
     public static final int TAG_EDITDATA = 0x998;
     public static final int TAG_LOGIN = 0x997;
+    public static final int TAG_CHANGE = 0x996;
 
     public static boolean ISLOGIN = false;
+
+    public static final int CODE_SUCCESS = 0;
+    public static final int CODE_ERROR_HASH = 1001;
+    public static final int CODE_ERROR_PARAM = 1002;
+    public static final int CODE_CLIENTNOTCFG = 1003;
+    public static final int CODE_ERROR_USERORPWD = 2001;
+    public static final int CODE_USERNOTUSE = 2002;
+    public static final int CODE_ERROR_OTHER = 9999;
+
+
 }

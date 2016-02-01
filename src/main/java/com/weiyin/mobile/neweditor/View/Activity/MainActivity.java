@@ -19,13 +19,18 @@ import android.widget.TextView;
 
 import com.weiyin.mobile.neweditor.Adapter.FragmentPagerSelectorAdapter;
 import com.weiyin.mobile.neweditor.Bean.Static;
+import com.weiyin.mobile.neweditor.Bean.User;
 import com.weiyin.mobile.neweditor.R;
 import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
+import com.weiyin.mobile.neweditor.Utils.DataUtils;
+import com.weiyin.mobile.neweditor.Utils.DbUtils;
 import com.weiyin.mobile.neweditor.View.CostomView.MainmenuLayout;
 import com.weiyin.mobile.neweditor.View.Fragment.FragmentAdCenter;
 import com.weiyin.mobile.neweditor.View.Fragment.FragmentMain;
 import com.weiyin.mobile.neweditor.View.Fragment.FragmentMyArtcile;
 
+import org.xutils.DbManager;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -74,7 +79,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     //用户姓名
     @ViewInject(R.id.user_name)
-    private ImageView username = null;
+    private TextView username = null;
+
+    //抽屉用户姓名
+    private TextView drawer_username = null;
+
+    //抽屉用户头像
+    private ImageView drawer_userhead = null;
+
+
     @ViewInject(R.id.controller_btn)
     private TextView controller_btn = null;
     @ViewInject(R.id.app_title)
@@ -85,8 +98,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     //退出状态
     private boolean isExit = false;
 
-    @ViewInject(R.id.drawer_head)
-    private ImageView head = null;
+    @ViewInject(R.id.nav_view)
+    private NavigationView nav_view = null;
+
+    private boolean islogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,10 +126,57 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOnPageChangeListener(this);
 
-        ((NavigationView)findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
+        nav_view.setNavigationItemSelectedListener(this);
 
-//        String drvice_token = UmengRegistrar.getRegistrationId(this);
-//        Log.v("jacy",drvice_token);
+        drawer_username = (TextView) nav_view.getHeaderView(0).findViewById(R.id.drawer_name);
+        drawer_userhead = (ImageView) nav_view.getHeaderView(0).findViewById(R.id.drawer_head);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        try {
+            islogin = DataUtils.readBoolean(this,"islogin");
+            initView();
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initView() throws DbException {
+
+        if (islogin){
+            DbManager manager = DbUtils.openOrCreatDb();
+
+            User user = manager.selector(User.class).findFirst();
+
+//            user.setUserName("二狗");
+//
+//            manager.dropTable(User.class);
+//            manager.save(user);
+
+            if (user != null){
+                username.setText(user.getUserName());
+                drawer_username.setText(user.getUserName());
+                if (user.getAvatar() != null){
+                    x.image().bind(usericon,user.getAvatar());
+                    x.image().bind(drawer_userhead,user.getAvatar());
+                }else {
+                    usericon.setImageResource(R.drawable.default_head);
+                    drawer_userhead.setImageResource(R.drawable.default_head);
+                }
+            }else {
+                username.setText("游客");
+                usericon.setImageResource(R.drawable.default_head);
+                drawer_userhead.setImageResource(R.drawable.default_head);
+            }
+        }else {
+            username.setText("游客");
+            usericon.setImageResource(R.drawable.default_head);
+            drawer_userhead.setImageResource(R.drawable.default_head);
+        }
 
     }
 
@@ -124,19 +186,25 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
      */
     @Event(value = {R.id.menu1,R.id.menu2,R.id.menu3,R.id.menu_btn,R.id.controller_btn})
     private void onClick(View v){
-//        if (!Static.ISLOGIN)
-//            ActivityController.getInstance().start(this,Static.ACTION_USER);
-//        else {
             switch (v.getId()){
                 case R.id.menu1 : mViewPager.setCurrentItem(0);
                     break;
-                case R.id.menu2 : mViewPager.setCurrentItem(1);
+                case R.id.menu2 :
+                    if (islogin){
+                        mViewPager.setCurrentItem(1);
+                    }else {
+                        ActivityUtils.start(this,Static.ACTION_USER,"start",Static.TAG_LOGIN);
+                    }
                     break;
-                case R.id.menu3 : mViewPager.setCurrentItem(2);
+                case R.id.menu3 :
+                    if (islogin){
+                        mViewPager.setCurrentItem(2);
+                    }else {
+                        ActivityUtils.start(this,Static.ACTION_USER,"start",Static.TAG_LOGIN);
+                    }
                     break;
                 case R.id.menu_btn :
-
-                    if (Static.ISLOGIN){
+                    if (islogin){
                         drawer.openDrawer(GravityCompat.START);
                     }else {
                         ActivityUtils.start(this,Static.ACTION_USER,"start",Static.TAG_LOGIN);
@@ -229,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         switch (id){
 
             case R.id.drawer_menu1 : ActivityUtils.start(this, Static.ACTION_USER,"start",Static.TAG_EDITDATA); break;
-            case R.id.drawer_menu2 :  ; break;
+            case R.id.drawer_menu2 : ActivityUtils.start(this, Static.ACTION_USER,"start",Static.TAG_CHANGE); break;
             default:break;
 
         }

@@ -14,16 +14,23 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+import com.weiyin.mobile.neweditor.Bean.Request;
+import com.weiyin.mobile.neweditor.Bean.User;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.R;
 import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 import com.weiyin.mobile.neweditor.Utils.ImageUtils;
 import com.weiyin.mobile.neweditor.View.CostomView.SelectorPicPopupWindow;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 /**
@@ -44,6 +51,8 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
 
     //fragment页面跳转的辅助类
     private static FragmentHelper helper = null;
+
+    private Bitmap headbitmap = null;
 
     @ViewInject(R.id.edit_name)
     private EditText name = null;
@@ -77,13 +86,15 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
      * 页面中的点击事件
      * @param v 触发点击事件的控件
      */
-    @Event(value = {R.id.edit_head,R.id.pay_weixin})
+    @Event(value = {R.id.edit_head,R.id.edit_save,R.id.edit_back})
     private void onClicke(View v){
 
         switch (v.getId()){
             case R.id.edit_head : popupWindow.showAtLocation(rootView, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);break;
-            case R.id.pay_alippay :
-                ActivityUtils.toast(getActivity(),"支付宝支付");break;
+
+            case R.id.edit_save : editUser();break;
+
+            case R.id.edit_back : getActivity().onBackPressed();break;
             default:break;
 
         }
@@ -117,6 +128,45 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
 
     }
 
+    private void editUser(){
+
+        Gson gson = new Gson();
+        Request request = new Request("edit");
+        String req = gson.toJson(request);
+
+        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+        headbitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+
+        RequestParams params = new RequestParams("");
+        params.setCharset("UTF-8");
+        params.addParameter("request",req);
+//        params.addParameter("userId", User.getInstance().getUserId());
+//        params.addParameter("userName", User.getInstance().getUserName());
+        params.addParameter("file",bStream);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                ActivityUtils.toast(getActivity(),"修改成功");
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                ActivityUtils.toast(getActivity(),"服务器出错:"+ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                ActivityUtils.toast(getActivity(),"取消修改");
+            }
+
+            @Override
+            public void onFinished() {
+                ActivityUtils.toast(getActivity(),"修改失败");
+            }
+        });
+
+    }
+
     /**
      * 选取头像
      */
@@ -140,11 +190,16 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
         startActivityForResult(intent,CODE_CROPPIC);
     }
 
+    /**
+     * 设置头像
+     * @param headImg
+     */
     private void setHeadImg(Intent headImg){
         Bundle bundle = headImg.getExtras();
         if (bundle !=null){
             Bitmap bitmap = bundle.getParcelable("data");
-            head.setImageBitmap(ImageUtils.toRoundBitmap(bitmap));
+            headbitmap = ImageUtils.toRoundBitmap(bitmap);
+            head.setImageBitmap(headbitmap);
             bitmap.recycle();
         }
     }
@@ -176,7 +231,6 @@ public class FragmentEditdata extends Fragment implements View.OnClickListener{
 
             default:break;
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

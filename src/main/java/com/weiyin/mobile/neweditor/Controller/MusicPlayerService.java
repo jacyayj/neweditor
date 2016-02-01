@@ -28,7 +28,6 @@ public class MusicPlayerService extends Service implements MusicPlayerServiceLis
     private boolean isplaying = false;
 
     private int progress = 0;
-
     @Override
     public void onCreate() {
         super.onCreate();

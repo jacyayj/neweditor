@@ -10,11 +10,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.weiyin.mobile.neweditor.Bean.Request;
+import com.weiyin.mobile.neweditor.Bean.User;
 import com.weiyin.mobile.neweditor.Controller.FragmentHelper;
 import com.weiyin.mobile.neweditor.R;
 import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 import com.weiyin.mobile.neweditor.Utils.StringUtils;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -81,7 +86,7 @@ public class FragmentFindPwd extends Fragment{
      * 使用xutils处理页面中的点击事件
      * @param v 触发事件的控件
      */
-    @Event(value = {R.id.btn_getcode_find,R.id.afirm_change})
+    @Event(value = {R.id.btn_getcode_find,R.id.afirm_change,R.id.change_back})
     private void onClicke(View v){
 
         switch (v.getId()){
@@ -89,6 +94,8 @@ public class FragmentFindPwd extends Fragment{
             case R.id.btn_getcode_find : handler.sendEmptyMessage(0x01);
 
             case R.id.afirm_change : find();break;
+
+            case R.id.change_back : getActivity().onBackPressed();break;
 
             default:break;
 
@@ -102,11 +109,11 @@ public class FragmentFindPwd extends Fragment{
 
         phone = phone_edittext.getText().toString();
 
-        if (StringUtils.isPhone(phone)){
-            ActivityUtils.toast(getActivity(),"验证码已发送");
-        }else {
-            ActivityUtils.toast(getActivity(),"请输入正确的手机号");
-        }
+//        if (StringUtils.isPhone(phone)){
+//            ActivityUtils.toast(getActivity(),"验证码已发送");
+//        }else {
+//            ActivityUtils.toast(getActivity(),"请输入正确的手机号");
+//        }
 
         handler = new Handler(){
             @Override
@@ -137,32 +144,49 @@ public class FragmentFindPwd extends Fragment{
         pwd_affirm = pwd_affirm_edittext.getText().toString();
         code = code_edittext.getText().toString();
 
-        if (StringUtils.isPhone(phone)){
-            if (StringUtils.isNULL(code)){
-               ActivityUtils.toast(getActivity(),"请输入验证码！");
+            if (StringUtils.isNULL(pwd)){
+                ActivityUtils.toast(getActivity(),"请输入密码！");
             }else {
-                if("1234".equals(code)){
-                    if (StringUtils.isNULL(pwd)){
-                        ActivityUtils.toast(getActivity(),"请输入密码！");
-                    }else {
-                        if (StringUtils.isNULL(pwd_affirm)){
-                            ActivityUtils.toast(getActivity(),"请再次输入密码！");
-                        }else {
-                            if (pwd.equals(pwd_affirm)){
-                                ActivityUtils.toast(getActivity(),"修改成功！");
-                            }else {
-                                ActivityUtils.toast(getActivity(),"两次输入密码不同、请确认后再试！");
-                            }
-                        }
-                    }
+                if (StringUtils.isNULL(pwd_affirm)){
+                    ActivityUtils.toast(getActivity(),"请再次输入密码！");
                 }else {
-                    ActivityUtils.toast(getActivity(),"验证码错误");
+                    if (pwd.equals(pwd_affirm)){
+                        ActivityUtils.toast(getActivity(),"修改成功！");
+
+                        Gson gson = new Gson();
+                        Request request = new Request("find");
+                        String req = gson.toJson(request);
+
+                        RequestParams params = new RequestParams("");
+                        params.setCharset("UTF-8");
+                        params.addParameter("request",req);
+                        params.addParameter("oldPass",pwd);
+                        params.addParameter("newPass",pwd_affirm);
+                        x.http().post(params, new Callback.CommonCallback<String>() {
+                            @Override
+                            public void onSuccess(String result) {
+                                ActivityUtils.toast(getActivity(),"修改成功");
+                            }
+
+                            @Override
+                            public void onError(Throwable ex, boolean isOnCallback) {
+                                ActivityUtils.toast(getActivity(),"服务器出错:"+ex.getMessage());
+                            }
+
+                            @Override
+                            public void onCancelled(CancelledException cex) {
+                                ActivityUtils.toast(getActivity(),"取消修改");
+                            }
+
+                            @Override
+                            public void onFinished() {
+                                ActivityUtils.toast(getActivity(),"修改失败");
+                            }
+                        });
+                    }else {
+                        ActivityUtils.toast(getActivity(),"两次输入密码不同、请确认后再试！");
+                    }
                 }
             }
-        }else {
-            ActivityUtils.toast(getActivity(),"请输入正确的手机号！");
-        }
-
     }
-
 }

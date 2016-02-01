@@ -2,6 +2,13 @@ package com.weiyin.mobile.neweditor.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.provider.Settings;
+
+import org.xutils.DbManager;
+import org.xutils.config.DbConfigs;
+import org.xutils.x;
 
 /**
  * Created by jacyayj on 2016/1/18 0018.
@@ -44,6 +51,10 @@ public class DataUtils {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key,value);
         editor.commit();
+
+
+        DbManager.DaoConfig daoConfig= new DbManager.DaoConfig();
+        DbManager manager = x.getDb(daoConfig);
     }
 
     public static void writeInt(Context context,String key,int value){
@@ -60,5 +71,10 @@ public class DataUtils {
         editor.commit();
     }
 
+    public static String timeStamp(){
+        String time = String.valueOf(System.currentTimeMillis());
+        int random = 100+(int)(Math.random()*(999-100+1));
+        return time+random;
+    }
 
 }

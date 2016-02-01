@@ -63,16 +63,6 @@ public class ArtcileActivity extends FragmentActivity implements FragmentHelper{
     }
 
     @Override
-    public void goBack() {
-        onBackPressed();
-    }
-
-    @Override
-    public void jumpTo(String arg0) {
-
-    }
-
-    @Override
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
     }

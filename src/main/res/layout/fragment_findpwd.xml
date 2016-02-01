@@ -3,7 +3,40 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/color_titlebackground"
+        >
 
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/change_back"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:src="@drawable/img_back"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            />
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/change_pwd"
+            android:textSize="@dimen/size_title"
+            android:textColor="@color/colorwhite"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        >
     <include layout="@layout/line"/>
 
     <android.support.v7.widget.AppCompatEditText
@@ -108,5 +141,5 @@
         android:textSize="@dimen/size_title"
         android:textColor="@color/colorwhite"
         android:id="@+id/afirm_change" />
-
+    </LinearLayout>
 </LinearLayout>

@@ -9,10 +9,6 @@ public interface FragmentHelper {
 
     void show(String arg);
 
-    void goBack();
-
-    void jumpTo(String arg0);
-
     void setBundle(Bundle bundle);
 
     Bundle getBundle();

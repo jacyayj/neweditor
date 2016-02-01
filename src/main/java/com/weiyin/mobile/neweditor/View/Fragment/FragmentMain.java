@@ -3,6 +3,7 @@ package com.weiyin.mobile.neweditor.View.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,19 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.weiyin.mobile.neweditor.Adapter.GrideViewAdapter;
 import com.weiyin.mobile.neweditor.Adapter.MainListviewIAdapter;
 import com.weiyin.mobile.neweditor.Adapter.MainViewPagerAdapter;
 import com.weiyin.mobile.neweditor.Bean.AdapterData;
+import com.weiyin.mobile.neweditor.Bean.Page;
+import com.weiyin.mobile.neweditor.Bean.Request;
 import com.weiyin.mobile.neweditor.Bean.Static;
 import com.weiyin.mobile.neweditor.R;
 import com.weiyin.mobile.neweditor.Utils.ActivityUtils;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -140,6 +146,51 @@ public class FragmentMain extends Fragment implements ViewPager.OnPageChangeList
                 }
                 default:break;
         }
+    }
+
+    /**
+     * 加载文章列表
+     */
+    private void getArticle(){
+                Gson gson = new Gson();
+
+                Request request = new Request("login");
+
+                Page pageT = Page.newInstance();
+
+                request.setHashCode(0,0,pageT.getCurrPage(),pageT.getPageSize(),0,1);
+
+                String req = gson.toJson(request);
+
+                RequestParams params = new RequestParams("");
+                params.setCharset("UTF-8");
+                params.addParameter("request",Base64.encode(req.getBytes(),0));
+                params.addParameter("type",1);
+                params.addParameter("pageSize",pageT.getPageSize());
+                params.addParameter("page",pageT.getCurrPage());
+                params.addParameter("userId",pageT.getPageSize());
+                params.addParameter("pageSize",pageT.getPageSize());
+                x.http().post(params, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        ActivityUtils.toast(getActivity(),"登录成功");
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        ActivityUtils.toast(getActivity(),"服务器出错:"+ex.getMessage());
+                    }
+
+                    @Override
+                    public void onCancelled(Callback.CancelledException cex) {
+                        ActivityUtils.toast(getActivity(),"取消登录");
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        ActivityUtils.toast(getActivity(),"登录失败");
+                    }
+                });
     }
 
     @Override

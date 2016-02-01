@@ -1,6 +1,7 @@
 package com.weiyin.mobile.neweditor.Utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import java.util.Set;
  * Created by jacyayj on 2016/1/26.
  */
 public class ActivityUtils {
+
+    public static ProgressDialog dialog = null;
 
     public static void toast(Context context, String msg) {
         Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
@@ -61,6 +64,18 @@ public class ActivityUtils {
         Intent i = new Intent(action);
         i.putExtra(key,msg);
         context.sendBroadcast(i);
+    }
+
+    public static void dialog(Context context){
+        if (dialog == null){
+            dialog = new ProgressDialog(context);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("请求中...");
+            dialog.show();
+        }else {
+            dialog.dismiss();
+            dialog = null;
+        }
     }
 
 }
